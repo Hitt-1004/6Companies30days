@@ -1,0 +1,20 @@
+class Solution {
+    private Set<String> operator = new HashSet<>(Arrays.asList("+", "-", "*", "/"));
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> postFix = new Stack<>();
+      for(String t : tokens)
+      {
+          if (!operator.contains(t)) postFix.push(Integer.parseInt(t));
+        else
+        {
+            int op1 = postFix.pop();
+            int op2 = postFix.pop();
+            if (t.equals("+")) postFix.push(op2 + op1);
+                else if (t.equals("-")) postFix.push(op2 - op1);
+                else if (t.equals("*")) postFix.push(op2 * op1);
+                else postFix.push(op2 / op1);
+        }
+      }
+      return postFix.pop();
+    }
+}
