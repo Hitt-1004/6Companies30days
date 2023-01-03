@@ -1,0 +1,17 @@
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        if(nums.length == 1) return 0;
+        int left = -1, right = -1;
+        int min = nums[0];
+        int max = nums[nums.length-1];
+        for(int i = 0; i < nums.length; i++){
+            int checkmin = nums[i];
+            int checkmax = nums[nums.length-1-i];
+            if(checkmin < min) right = i;
+            else min = checkmin;
+            if(checkmax > max) left = i;
+            else max = checkmax;
+        }
+        return Math.max(0, left+right-nums.length+2);
+    }
+}
