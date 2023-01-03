@@ -1,0 +1,31 @@
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        int len = prerequisites.length;
+        if(numCourses == 0 || len == 0)
+            return true;
+        int[] pre = new int[numCourses];
+        for(int i=0; i<len; i++)
+            pre[prerequisites[i][0]]++;
+
+        LinkedList<Integer> nopre = new LinkedList<Integer>();
+        for(int i=0; i<numCourses; i++){
+            if(pre[i]==0)
+                nopre.add(i);
+        }
+        int num = nopre.size();
+        while(!nopre.isEmpty()){
+            int head = nopre.remove();
+            for(int i=0; i<len; i++){
+                if(prerequisites[i][1] == head){
+                    pre[prerequisites[i][0]]--;
+                    if(pre[prerequisites[i][0]]==0){
+                        num++;
+                        nopre.add(prerequisites[i][0]);
+                    }
+                }
+            }
+        }
+        if(num == numCourses) return true;
+        return false;
+    }
+}
