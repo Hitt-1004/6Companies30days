@@ -1,0 +1,23 @@
+class Solution {
+    public int minOperations(int[] nums, int[] numsDivide) {
+        Arrays.sort(nums);
+        int del = 0;
+        int delEle = 0;
+        for(int i = 0; i < nums.length; i++){
+            int cntDiv = 0;
+            if(nums[i] == delEle){ 
+                del++;
+                continue;
+            }
+            for(int j = 0; j < numsDivide.length; j++){
+                if(numsDivide[j] % nums[i] == 0) cntDiv++;
+            }
+            if(cntDiv == numsDivide.length) return del;
+            else{ 
+                del++;
+                delEle = nums[i];
+            }
+        }
+        return -1;
+    }
+}
