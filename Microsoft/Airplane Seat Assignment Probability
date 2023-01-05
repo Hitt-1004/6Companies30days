@@ -1,0 +1,20 @@
+class Solution {
+    public double nthPersonGetsNthSeat(int n) {
+        if(n==1) return 1;
+        else return 0.5;
+    }
+}
+
+/*Assume that f(n) is the probability that the nth  person will sit on his seat, for n > 2,
+
+when n ≤ 2,
+f(1) = 1
+f(2) = 0.5
+
+And we can prove that f(n) == f(n-1) when n > 2
+f(n) = (1/n)*(f(1)+f(2)+.........+f(n-1))
+f(n-1) = (1/n-1)*(f(1)+f(2)+.........+f(n-2))
+f(n) = (1/n)*((n-1)*f(n-1)+f(n-1))
+f(n) = f(n-1)
+
+Therefore, for n≥2 , f(n) = 0.5*/
