@@ -1,16 +1,23 @@
 class Solution {
-  private static long fact(int n){
-      if(n == 1) return 1;
-      return n*fact(n-1);
-  }
+    // private long fact(int n){
+    //     if(n == 1) return 1;
+    //     return n*fact(n-1);
+    // }
 
-  static public int trailingZeroes(int n) {
-      long f = fact(n);
-      int cnt = 0;
-      while( f % 10 == 0){
-          cnt++;
-          f = f/10;
-      } 
-      return cnt;   
-  }
+    public int trailingZeroes(int n) {
+        if(n == 0) return 0;
+        // long f = fact(n);
+        // int cnt = 0;
+        // while( f % 10 == 0){
+        //     cnt++;
+        //     f = f/10;
+        // } 
+        // return cnt;   
+        int cnt = 0;
+        while (n != 0) {
+            n = n/5;
+            cnt += n;
+        }
+        return cnt;
+    }
 }
