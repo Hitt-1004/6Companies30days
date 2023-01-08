@@ -1,0 +1,25 @@
+class Solution {
+    public int minimumCardPickup(int[] cards) {
+        int numCards = Integer.MAX_VALUE;
+        
+        // -> BruteForce Solution
+        // for(int i = 0; i < cards.length; i++){
+        //     for(int j = i+1; j < cards.length; j++){
+        //         if(cards[j] == cards[i] && numCards > j-i+1){
+        //             numCards = j-i+1;
+        //             break;
+        //         }
+        //     }
+        // }
+        
+        // -> Optimal Solution
+        Map<Integer, Integer> card = new HashMap<>();
+        for(int i= 0; i < cards.length; i++){
+            if(card.containsKey(cards[i]) && numCards > i-card.get(cards[i])+1) numCards = i-card.get(cards[i])+1;
+            card.put(cards[i], i);
+        }
+
+        if(numCards == Integer.MAX_VALUE) return -1;
+        return numCards;
+    }
+}
