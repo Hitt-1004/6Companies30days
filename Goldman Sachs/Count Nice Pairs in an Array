@@ -1,0 +1,24 @@
+//BruteForce Approach
+
+class Solution {
+    private int rev(int num) {
+    int x = 0;
+    while (num > 0) {
+      x = x * 10 + (num % 10);
+      num /= 10;
+    }
+    return x;
+  }
+
+    public int countNicePairs(int[] nums) {
+        int numPairs = 0;
+        int mod = 1000000007;
+        for(int i = 0; i < nums.length; i++){
+            for(int j = i+1; j < nums.length; j++){
+                if(nums[i] + rev(nums[j]) == nums[j] + rev(nums[i])) 
+                    numPairs++;
+            }
+        }
+        return numPairs % mod;
+    }
+}
