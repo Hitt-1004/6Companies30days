@@ -1,0 +1,15 @@
+class Solution {
+    public boolean increasingTriplet(int[] nums) {
+        int low = Integer.MAX_VALUE;
+        int mid = Integer.MAX_VALUE;
+        for(int i = 0; i < nums.length; i++){
+            int high = nums[i];
+            if(high < low)
+                low = high;
+            else if(high < mid && high > low)
+                mid = high;
+            else if(high > mid && mid > low) return true;
+        }
+        return false;
+    }
+}
