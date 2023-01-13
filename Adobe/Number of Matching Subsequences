@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int numMatchingSubseq(string s, vector<string>& words) {
+        int numMatch = 0, k = s.size();
+        unordered_map<string, int> map;
+        for(int i = 0 ;i < words.size(); i++)
+            map[words[i]]++;
+        for(auto st: map){
+           int i1 = 0, i2 = 0;
+            string m = st.first;
+            int a = m.size();
+            while(i1 < k && i2 < a){
+                if(s[i1] == m[i2]){
+                    i1++;
+                    i2++;
+                }
+                else i1++;
+            }
+            if(i2 == a) numMatch += st.second;
+        }
+        return numMatch;
+    }
+};
